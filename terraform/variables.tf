@@ -48,3 +48,8 @@ variable "subnet_cidr" {
   description = "Subnet CIDR"
   default     = "10.0.0.0/24"
 }
+
+variable "required_api"{
+  description = "APIs required to deploy the project"
+  default = [ "redis.googleapis.com", "compute.googleapis.com", "cloudsql.googleapis.com"]
+} 
