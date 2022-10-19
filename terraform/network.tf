@@ -77,7 +77,7 @@ resource "google_compute_global_address" "service_range" {
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
   address       = "10.200.0.0"
-  prefix_length = 24
+  prefix_length = 16
   network       = module.vpc.network_name
 }
 

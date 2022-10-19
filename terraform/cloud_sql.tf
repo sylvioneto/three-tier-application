@@ -34,7 +34,10 @@ resource "google_sql_database_instance" "instance" {
     }
   }
 
-  depends_on = [google_service_networking_connection.private_service_connection]
+  depends_on = [
+      google_service_networking_connection.private_service_connection,
+      google_project_service.api
+    ]
 }
 
 resource "google_sql_database" "database" {
