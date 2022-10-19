@@ -71,3 +71,18 @@ resource "google_compute_router_nat" "nat_gateway" {
     filter = "ERRORS_ONLY"
   }
 }
+
+resource "google_compute_global_address" "service_range" {
+  name          = "service-networking-address"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  address       = "10.200.0.0"
+  prefix_length = 24
+  network       = module.vpc.network_name
+}
+
+resource "google_service_networking_connection" "private_service_connection" {
+  network                 = module.vpc.network_id
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.service_range.name]
+}
