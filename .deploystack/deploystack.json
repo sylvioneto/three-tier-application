@@ -1,0 +1,14 @@
+{	"title":"SINGLE VM",
+	"description": "This process will create Three Tier Web Application environment",
+	"documentation_link": "https://cloud.google.com/shell/docs/cloud-shell-tutorials/deploystack/single-vm",
+	"duration":1,
+	"collect_project":true,
+	"collect_project_number":true,
+	"collect_region":true,
+	"collect_zone":false,
+	"region_type":"compute",
+	"region_default":"us-central1",
+	"hard_settings":{
+		"basename":"apache"
+	}
+}
