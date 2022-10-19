@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 resource "google_compute_security_policy" "policy" {
   provider = google-beta
-  name     = "${local.application_name}-policy"
+  name     = "${var.application_name}-policy"
 
   # WAF preconfigured rules
   rule {

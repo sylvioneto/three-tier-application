@@ -19,7 +19,7 @@ module "instance_template" {
   version = "~> 7.6"
 
   project_id           = var.project_id
-  name_prefix          = local.application_name
+  name_prefix          = var.application_name
   region               = var.region
   network              = module.vpc.network_name
   subnetwork           = "subnet-${var.region}"
@@ -51,7 +51,7 @@ module "mig" {
   project_id        = var.project_id
   region            = var.region
   target_size       = 2
-  hostname          = local.application_name
+  hostname          = var.application_name
   instance_template = module.instance_template.self_link
 
   named_ports = [

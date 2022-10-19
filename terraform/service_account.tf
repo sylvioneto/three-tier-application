@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 resource "google_service_account" "service_account" {
-  account_id   = local.application_name
-  display_name = "Service Account for instances of ${local.application_name}"
+  account_id   = var.application_name
+  display_name = "Service Account for instances of ${var.application_name}"
 }
 
 resource "google_project_iam_member" "log_writer" {
