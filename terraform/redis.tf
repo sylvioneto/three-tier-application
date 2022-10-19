@@ -11,7 +11,7 @@ resource "google_redis_instance" "cache" {
   connect_mode       = "PRIVATE_SERVICE_ACCESS"
 
   depends_on = [
-    google_service_networking_connection.private_service_connection,
+    google_service_networking_connection.service_networking,
     google_project_service.api
   ]
 }

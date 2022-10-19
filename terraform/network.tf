@@ -81,7 +81,7 @@ resource "google_compute_global_address" "service_range" {
   network       = module.vpc.network_name
 }
 
-resource "google_service_networking_connection" "private_service_connection" {
+resource "google_service_networking_connection" "service_networking" {
   network                 = module.vpc.network_id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.service_range.name]
