@@ -4,7 +4,7 @@ module "gce-lb-http" {
 
   project           = var.project_id
   name              = "${var.application_name}-http-lb"
-  target_tags       = ["allow-hc"]
+  target_tags       = ["allow-health-check"]
   firewall_networks = [module.vpc.network_name]
 
   backends = {

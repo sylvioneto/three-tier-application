@@ -6,7 +6,7 @@ module "instance_template" {
   name_prefix          = local.application_name
   region               = var.region
   network              = module.vpc.network_name
-  subnetwork           = "webapp-${var.region}"
+  subnetwork           = "subnet-${var.region}"
   service_account      = local.service_account
   labels               = local.resource_labels
   source_image         = "cos-stable-97-16919-29-40"
@@ -19,7 +19,7 @@ module "instance_template" {
   EOF
 
   tags = [
-    "allow-hc",
+    "allow-health-check",
     "allow-ssh"
   ]
 
