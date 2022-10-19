@@ -23,7 +23,7 @@ module "instance_template" {
   region               = var.region
   network              = module.vpc.network_name
   subnetwork           = "subnet-${var.region}"
-  service_account      = google_service_account.service_account.id
+  service_account      = local.service_account
   labels               = local.resource_labels
   source_image         = "cos-stable-97-16919-29-40"
   source_image_project = "cos-cloud"
