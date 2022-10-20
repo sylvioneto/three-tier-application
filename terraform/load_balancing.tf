@@ -30,7 +30,7 @@ module "gce-lb-http" {
       port                    = 80
       port_name               = "http"
       timeout_sec             = 10
-      enable_cdn              = false
+      enable_cdn              = true
       custom_request_headers  = null
       custom_response_headers = null
       security_policy         = google_compute_security_policy.policy.name

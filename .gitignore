@@ -3,5 +3,5 @@ go.mod
 go.sum
 errFile
 .DS_Store
-terraform.tfstate
-terraform.tfvars
+terraform.tfstate*
+*auto.tfvars

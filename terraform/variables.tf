@@ -18,10 +18,11 @@ data "google_project" "project" {}
 
 locals {
   resource_labels = {
-    terraform = "true"
-    app       = var.application_name
-    env       = "sandbox"
-    repo      = "deploystack"
+    app         = var.application_name
+    env         = "sandbox"
+    repo        = "three-tier-app-gce"
+    deployed_by = "deploystack"
+    terraform   = "true"
   }
 
   service_account = {
@@ -52,4 +53,4 @@ variable "subnet_cidr" {
 variable "apis" {
   description = "APIs required to deploy the project"
   default     = ["redis.googleapis.com", "compute.googleapis.com", "sqladmin.googleapis.com"]
-} 
+}
