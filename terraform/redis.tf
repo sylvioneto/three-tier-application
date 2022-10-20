@@ -1,5 +1,5 @@
 resource "google_redis_instance" "cache" {
-  name   = "${var.application_name}-instance"
+  name   = "${var.application_name}-cache"
   region = var.region
 
   redis_version  = "REDIS_4_0"
