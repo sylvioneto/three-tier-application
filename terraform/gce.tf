@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-module "instance_template" {
+module "instance_template_be" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 7.6"
 
   project_id           = var.project_id
-  name_prefix          = var.application_name
+  name_prefix          = "${var.application_name}-be"
   region               = var.region
   network              = module.vpc.network_name
   subnetwork           = "subnet-${var.region}"
@@ -36,7 +36,8 @@ module "instance_template" {
 
   tags = [
     "allow-health-check",
-    "allow-ssh"
+    "allow-ssh",
+    "allow-front-end"
   ]
 
   depends_on = [
@@ -44,15 +45,15 @@ module "instance_template" {
   ]
 }
 
-module "mig" {
+module "mig_be" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "~> 7.6.0"
 
   project_id        = var.project_id
   region            = var.region
   target_size       = 2
-  hostname          = var.application_name
-  instance_template = module.instance_template.self_link
+  # hostname          = var.application_name
+  instance_template = module.instance_template_be.self_link
 
   named_ports = [
     {
