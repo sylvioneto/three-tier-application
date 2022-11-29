@@ -1,4 +1,4 @@
-# DeployDtack - Three-tier Autoscaling Web Application
+# DeployStack - Three-tier Autoscaling Web Application
 
 This is a stack that deploys a Three-tier Autoscaling Web Application using Managed Instance Groups.
 
