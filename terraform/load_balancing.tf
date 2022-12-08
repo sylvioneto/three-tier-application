@@ -19,7 +19,7 @@ module "gce-lb-http" {
   version = "~> 6.2"
 
   project           = var.project_id
-  name              = "${var.application_name}-load-balancer"
+  name              = "${var.application_name}-lb"
   target_tags       = ["allow-health-check"]
   firewall_networks = [module.vpc.network_name]
 

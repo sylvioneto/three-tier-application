@@ -82,11 +82,11 @@ LOCATION=US
 
 
 section_open "Removing Load Balacing resources"
-    gcloud compute forwarding-rules delete $BASENAME-load-balancer --global -q
-    gcloud compute target-http-proxies delete $BASENAME-load-balancer-http-proxy -q
-    gcloud compute url-maps delete $BASENAME-load-balancer-url-map -q
-    gcloud compute backend-services delete $BASENAME-load-balancer-backend-default --global -q
-    gcloud compute health-checks delete $BASENAME-load-balancer-hc-default --global -q
+    gcloud compute forwarding-rules delete $BASENAME-lb --global -q
+    gcloud compute target-http-proxies delete $BASENAME-lb-http-proxy -q
+    gcloud compute url-maps delete $BASENAME-lb-url-map -q
+    gcloud compute backend-services delete $BASENAME-lb-backend-default --global -q
+    gcloud compute health-checks delete $BASENAME-lb-hc-default --global -q
 section_close
 
 
@@ -112,13 +112,13 @@ section_close
 
 
 section_open "Removing Network resources"
-    gcloud compute firewall-rules delete $BASENAME-vpc-allow-ssh-from-iap $BASENAME-load-balancer-hc-0 -q
+    gcloud compute firewall-rules delete $BASENAME-vpc-allow-ssh-from-iap $BASENAME-lb-hc-0 -q
     gcloud compute routers delete $BASENAME-vpc-nat-router --region=$REGION -q
     gcloud compute addresses delete service-networking-address --global -q
     gcloud compute networks subnets delete subnet-us-central1 --region=$REGION -q
     gcloud compute networks delete $BASENAME-vpc -q
     gcloud compute security-policies delete $BASENAME-policy -q
-    gcloud compute addresses delete $BASENAME-load-balancer-address --global -q
+    gcloud compute addresses delete $BASENAME-lb-address --global -q
 section_close
 
 
