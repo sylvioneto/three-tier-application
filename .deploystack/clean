@@ -91,7 +91,7 @@ section_close
 
 
 section_open "Removing Memorystore for Redis"
-    gcloud redis instances delete $BASENAME-cache --region $REGION -q
+    gcloud redis instances delete $BASENAME-cache --region=$REGION -q
 section_close
 
 
@@ -102,8 +102,18 @@ section_close
 
 
 section_open "Removing Compute Engine instances"
-    gcloud compute instance-groups delete $BASENAME-mig -q
+    gcloud compute instance-groups managed delete $BASENAME-mig --region=$REGION -q
 section_close
+
+
+section_open "Removing Network resources"
+    gcloud compute firewall-rules delete $BASENAME-vpc-allow-ssh-from-iap $BASENAME-load-balancer-hc-0 -q
+    gcloud compute routers delete $BASENAME-vpc-nat-router --region=$REGION -q
+    gcloud compute addresses delete service-networking-address --global -q
+    gcloud compute networks subnets delete subnet-us-central1 --region=$REGION -q
+    gcloud compute networks delete $BASENAME-vpc -q
+section_close
+
 
 
 printf "$DIVIDER"
