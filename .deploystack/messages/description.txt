@@ -5,4 +5,5 @@ This process will configure and create the following:
 	* Cloud Armor
 	* Load Balancing
 	* Service Account
-	
+	* Cloud SQL
+	* Memorystore for Redis
