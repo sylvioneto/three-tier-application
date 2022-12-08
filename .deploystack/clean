@@ -81,8 +81,12 @@ BASENAME=mytestapp
 LOCATION=US
 
 
-section_open "Removing Compute Engine instances"
-    gcloud compute instance-groups delete $BASENAME-mig -q
+section_open "Removing Load Balacing resources"
+    gcloud compute forwarding-rules delete $BASENAME-load-balancer --global -q
+    gcloud compute target-http-proxies delete $BASENAME-load-balancer-http-proxy -q
+    gcloud compute url-maps delete $BASENAME-load-balancer-url-map -q
+    gcloud compute backend-services delete $BASENAME-load-balancer-backend-default --global -q
+    gcloud compute health-checks delete $BASENAME-load-balancer-hc-default --global -q
 section_close
 
 
@@ -91,12 +95,14 @@ section_open "Removing Memorystore for Redis"
 section_close
 
 
-section_open "Removing Load Balacing resources"
-    gcloud compute forwarding-rules delete $BASENAME-load-balancer --global -q
-    gcloud compute target-http-proxies delete $BASENAME-load-balancer-http-proxy -q
-    gcloud compute url-maps delete $BASENAME-load-balancer-url-map -q
-    gcloud compute backend-services delete $BASENAME-load-balancer-backend-default --global -q
-    gcloud compute health-checks delete $BASENAME-load-balancer-hc-default --global -q
+section_open "Removing Cloud SQL"
+    CLOUD_SQL=$(gcloud sql instances list --filter='labels.app=mytestapp' --format='value(name)')
+    gcloud sql instances delete $CLOUD_SQL -q
+section_close
+
+
+section_open "Removing Compute Engine instances"
+    gcloud compute instance-groups delete $BASENAME-mig -q
 section_close
 
 
