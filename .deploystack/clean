@@ -106,14 +106,20 @@ section_open "Removing Compute Engine instances"
 section_close
 
 
+section_open "Removing IAM resources"
+    gcloud iam service-accounts delete $BASENAME@$PROJECT.iam.gserviceaccount.com -q
+section_close
+
+
 section_open "Removing Network resources"
     gcloud compute firewall-rules delete $BASENAME-vpc-allow-ssh-from-iap $BASENAME-load-balancer-hc-0 -q
     gcloud compute routers delete $BASENAME-vpc-nat-router --region=$REGION -q
     gcloud compute addresses delete service-networking-address --global -q
     gcloud compute networks subnets delete subnet-us-central1 --region=$REGION -q
     gcloud compute networks delete $BASENAME-vpc -q
+    gcloud compute security-policies delete $BASENAME-policy -q
+    gcloud compute addresses delete $BASENAME-load-balancer-address --global -q
 section_close
-
 
 
 printf "$DIVIDER"
