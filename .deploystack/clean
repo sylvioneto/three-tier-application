@@ -77,19 +77,28 @@ get_project_number PROJECT_NUMBER $PROJECT
 
 REGION=us-central1
 ZONE=us-central1-a
-BASENAME=singlevm
+BASENAME=mytestapp
 LOCATION=US
 
 
-
-
-
-
-
-
-section_open "Removing Compute Engine instance"
-    gcloud compute instances delete $BASENAME-instance -q
+section_open "Removing Compute Engine instances"
+    gcloud compute instance-groups delete $BASENAME-mig -q
 section_close
+
+
+section_open "Removing Memorystore for Redis"
+    gcloud redis instances delete $BASENAME-cache --region $REGION -q
+section_close
+
+
+section_open "Removing Load Balacing resources"
+    gcloud compute forwarding-rules delete $BASENAME-load-balancer --global -q
+    gcloud compute target-http-proxies delete $BASENAME-load-balancer-http-proxy -q
+    gcloud compute url-maps delete $BASENAME-load-balancer-url-map -q
+    gcloud compute backend-services delete $BASENAME-load-balancer-backend-default --global -q
+    gcloud compute health-checks delete $BASENAME-load-balancer-hc-default --global -q
+section_close
+
 
 printf "$DIVIDER"
 printf "CONGRATS!!!!!!! \n"
