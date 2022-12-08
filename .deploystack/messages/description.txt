@@ -1,2 +1,8 @@
 This process will configure and create the following: 
 	* Compute Engine Instance
+	* VPC
+	* Cloud NAT and Cloud Router
+	* Cloud Armor
+	* Load Balancing
+	* Service Account
+	
