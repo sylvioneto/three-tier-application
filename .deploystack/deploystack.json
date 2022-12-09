@@ -5,7 +5,7 @@
 	"duration": 10,
 	"collect_project": true,
 	"collect_project_number": true,
-	"collect_region": false,
+	"collect_region": true,
 	"collect_zone": false,
 	"region_type": "compute",
 	"region_default": "us-central1",
