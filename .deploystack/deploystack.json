@@ -1,14 +1,15 @@
-{	"title":"Three Tier Application on GCE",
+{
+	"title": "Three Tier Application on GCE",
 	"description": "This process will create Three Tier Web Application environment",
 	"documentation_link": "https://github.com/sylvioneto/three-tier-application",
-	"duration":5,
-	"collect_project":true,
-	"collect_project_number":true,
-	"collect_region":false,
-	"collect_zone":false,
-	"region_type":"compute",
-	"region_default":"us-central1",
-	"hard_settings":{
-		"application_name":"mytestapp"
+	"duration": 10,
+	"collect_project": true,
+	"collect_project_number": true,
+	"collect_region": false,
+	"collect_zone": false,
+	"region_type": "compute",
+	"region_default": "us-central1",
+	"hard_settings": {
+		"application_name": "mytestapp"
 	}
 }
